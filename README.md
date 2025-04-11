@@ -21,7 +21,7 @@ This will allow for us to have the proper tools to be able to run our Jupyter fo
 ## Usage
 For this project, the parquet files have already been imported into the Jupyter file under the name 'finding_catenary'. In the first few coding blocks, you will notice that there is a line of code like so:
 
-'''
+```python
 difficulty = ['easy', 'medium', 'hard', 'extrahard']
 choose_difficulty = random.randint(0, 3)
 
