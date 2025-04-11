@@ -90,7 +90,7 @@ def get_2d_points(wire_points, plane, point_origin):
     arbitrary = np.zeros(3)
     arbitrary[min_idx] = 1.0
 
-    # Getting two arbitrary orthogonal vectors that are not parallel to the normal
+    # Getting two arbitrary vectors that are orthogonal to the normal
     u = np.cross(plane_normal, arbitrary)
     u = u / np.linalg.norm(u)
 
