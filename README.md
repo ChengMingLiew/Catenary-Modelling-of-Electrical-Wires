@@ -40,9 +40,8 @@ Next, to label each individual wires from those bunches of wires, PCA algorithm 
 ### Best Plane for each Wire Cluster
 By using 3 points from each wire cluster, we are able to create two coplanar vectors between those points. By finding the cross product between these 3 points, we are then able to find the coefficients of our 3d plane following the equation:
 
-$$
-Ax + By + Cz = D
-$$
+$$ Ax + By + Cz = D $$
+
 This is done with points taken from the trough of the wire, the start of the wire and the end of the wire. We then calculate the sum of the distance between all points in that wire cluster, from the plane, and choose the plane with the least distance, dubbing it as our best plane.
 
 ### Projected X-Y coordinates of the Wire Cluster
