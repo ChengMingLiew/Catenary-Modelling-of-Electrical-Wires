@@ -28,4 +28,4 @@ choose_difficulty = random.randint(0, 3)
 lidar_df = spark.read.parquet(f'lidar_cable/lidar_cable_points_{difficulty[choose_difficulty]}.parquet')
 ```
 
-The difficulty of the parquet files chosen is currently set at random. However, by setting the indices individually from 0 to 3, we are able to choose which difficulty we desire.
+The difficulty of the parquet files chosen is currently set at random. However, by changing the choose_difficulty variable from 0 to 3, we are able to choose which difficulty we desire.
