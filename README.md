@@ -11,7 +11,7 @@ Where $c$ is a curvature parameter, x is the distance along the wire $x_0$ is th
 ## Getting started
 To get started, there are some libraries and dependencies where we have to install before setting up the project locally.
 
-- Downloading requirments.txt
+- Downloading requirements.txt
 ```
 $ pip install -r requirements.txt
 ```
