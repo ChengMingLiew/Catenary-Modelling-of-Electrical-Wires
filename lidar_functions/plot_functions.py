@@ -37,7 +37,7 @@ def xy_cable_plot(cable_points, label):
 def plot_3d_wire_clusters(lidar_df):
 
     fig = plt.figure(figsize=(10, 7))
-    ax = fig.add_subplot(111, projection='3d')
+    wire_clusters = fig.add_subplot(111, projection='3d')
 
     for label in sorted(lidar_df['global_wire'].unique()):
         cluster_points = lidar_df[lidar_df['global_wire'] == label]
@@ -46,9 +46,9 @@ def plot_3d_wire_clusters(lidar_df):
                    cluster_points['z'], 
                    label=f'Wire {label}', s=10)
 
-    ax.set_title('3D Wire Plot')
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
-    ax.legend()
+    wire_clusters.set_title('3D Wire Plot')
+    wire_clusters.set_xlabel('x')
+    wire_clusters.set_ylabel('y')
+    wire_clusters.set_zlabel('z')
+    wire_clusters.legend()
     plt.show()
