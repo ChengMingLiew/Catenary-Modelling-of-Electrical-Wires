@@ -8,7 +8,7 @@ $$ y(x) = y_0 + c x [cosh(\frac{x - x_0}{c} - 1] $$
 
 Where $c$ is a curvature parameter, x is the distance along the wire $x_0$ is the $x$ value of the trough, $y$ is the elevation of the wire, and $y_0$ is the lowest elevation of the wire.
 
-## Getting started
+# Getting started
 To get started, there are some libraries and dependencies where we have to install before setting up the project locally.
 
 - Downloading requirements.txt
@@ -18,7 +18,7 @@ $ pip install -r requirements.txt
 
 This will allow for us to have the proper tools to be able to run our Jupyter folder 'finding_catenary' in order to find the best fit Catenary models. 
 
-## Usage
+# Usage
 For this project, the parquet files have already been imported into the Jupyter file under the name 'finding_catenary'. In the first few coding blocks, you will notice that there is a line of code like so:
 
 ```python
@@ -30,7 +30,7 @@ lidar_df = spark.read.parquet(f'lidar_cable/lidar_cable_points_{difficulty[choos
 
 The difficulty of the parquet files chosen is currently set at random. However, by changing the choose_difficulty variable from 0 to 3, we are able to choose which difficulty we desire. Then by running the Jupyter notebook 'finding_catenary' we will be able to get the best catenary models for the wires that are found in the datasets.
 
-## Steps to the Algorithm
+# Steps to the Algorithm
 ### DBSCAN Algorithm
 First, to handle for the case where there are mutliple bunches of wires that are present, and hanging with vastly different heights, we will be using DBSCAN to cluster those groups. The hyperparameter 'min_samples' is chosen to be $2 * d = 6$ following the guideline that it should be double the number of dimensionality our data, $d = 3$. For the hyperparameter 'eps', which defines the maximum distance allowed for two clusters to be within the cluster, the value 0.9 was arbitrarily chosen as this is what worked the best.
 
@@ -53,7 +53,9 @@ From this, we need to construct a new axis by using basis vectors of the plane. 
 ### Finding the Optimal C
 From our cartenary equation, and the 2d points that we have found for our wire, we can easily find the parameters $x_0$ and $y_0$. In order to find the optimal C for the equation, we use the function 'minimize' from the 'scipy.optimize' module, and an additional loss function. The 'minimize' function will take in our loss function and cartenary equation as an argument and find the optimal c which will give us the least Mean Squared Error between the equations we generate and the real points.
 
-
+# Acknowledgements
+- [Optimal Hyperparameters for DBSCAN]([URL to navigate](https://stackoverflow.com/questions/15050389/estimating-choosing-optimal-hyperparameters-for-dbscan))
+- [Projecting a 3D point onto a plane]([URL to navigate](https://stackoverflow.com/questions/9605556/how-to-project-a-point-onto-a-plane-in-3d))
 
 
 
