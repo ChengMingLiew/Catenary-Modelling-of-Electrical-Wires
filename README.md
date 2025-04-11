@@ -10,9 +10,22 @@ Where $c$ is a curvature parameter, x is the distance along the wire $x_0$ is th
 
 ## Getting started
 To get started, there are some libraries and dependencies where we have to install before setting up the project locally.
+
 - Downloading requirments.txt
 ```
 $ pip install -r requirements.txt
 ```
 
-This will allow for us to have the proper tools to be able to run our Jupyter folder 'finding_catenary' in order to find the best fit Catenary models.
+This will allow for us to have the proper tools to be able to run our Jupyter folder 'finding_catenary' in order to find the best fit Catenary models. 
+
+## Usage
+For this project, the parquet files have already been imported into the Jupyter file under the name 'finding_catenary'. In the first few coding blocks, you will notice that there is a line of code like so:
+
+'''
+difficulty = ['easy', 'medium', 'hard', 'extrahard']
+choose_difficulty = random.randint(0, 3)
+
+lidar_df = spark.read.parquet(f'lidar_cable/lidar_cable_points_{difficulty[choose_difficulty]}.parquet')
+```
+
+The difficulty of the parquet files chosen is currently set at random. However, by setting the indices individually from 0 to 3, we are able to choose which difficulty we desire.
