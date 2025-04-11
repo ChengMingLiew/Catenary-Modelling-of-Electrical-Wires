@@ -40,7 +40,7 @@ def cluster_cables(lidar_df):
 # Clustering the cable into individual wires using PCA and K-means
 def clustering_individual_wires(cable_points, cable_num):
 
-    # Using PCA to get the orthogonal vector
+    # Using PCA to get the orthogonal line
     pca = PCA(n_components=2)
     pca.fit(cable_points[['x', 'y']])
     normal = pca.components_[1]   
