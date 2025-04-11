@@ -54,9 +54,9 @@ From this, we need to construct a new axis by using basis vectors of the plane. 
 From our cartenary equation, and the 2d points that we have found for our wire, we can easily find the parameters $x_0$ and $y_0$. In order to find the optimal C for the equation, we use the function 'minimize' from the 'scipy.optimize' module, and an additional loss function. The 'minimize' function will take in our loss function and cartenary equation as an argument and find the optimal c which will give us the least Mean Squared Error between the equations we generate and the real points.
 
 # Acknowledgements
-- [Optimal Hyperparameters for DBSCAN]([URL to navigate](https://stackoverflow.com/questions/15050389/estimating-choosing-optimal-hyperparameters-for-dbscan))
-- [Projecting a 3D point onto a plane]([URL to navigate](https://stackoverflow.com/questions/9605556/how-to-project-a-point-onto-a-plane-in-3d))
-
+- ([Optimal Hyperparameters for DBSCAN](https://stackoverflow.com/questions/15050389/estimating-choosing-optimal-hyperparameters-for-dbscan))
+- ([Projecting a 3D point onto a plane](https://stackoverflow.com/questions/9605556/how-to-project-a-point-onto-a-plane-in-3d))
+- ([Finding Equation of a Plane with 3 points](https://math.stackexchange.com/questions/2686606/equation-of-a-plane-passing-through-3-points))
 
 
 
