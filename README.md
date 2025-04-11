@@ -37,7 +37,7 @@ First, to handle for the case where there are mutliple bunches of wires that are
 ### K-Means and PCA Algorithm
 Next, to label each individual wires from those bunches of wires, PCA algorithm and K-means were chosen. We start out by looking at only the x and y values of the data points for each groups of wires, by plotting out in the 2D plane. Visually, we can tell that the wires and separated and parallel to each other. By using PCA, we can find the orthogonal line, perpendicular to the direction of those wires. This allows us to then project those points onto the line, reducing it into a 1D problem, which we can then use K-Means to cluster and label those wires accordingly. The Elbow Method was also employed in this process, in order to find the optimal cluster number, K to label the wires.
 
-### Finding the best plane for each wire cluster
+### Best Plane for each Wire Cluster
 By using 3 points from each wire cluster, we are able to create two coplanar vectors between those points. By finding the cross product between these 3 points, we are then able to find the coefficients of our 3d plane following the equation:
 
 $$
@@ -45,8 +45,14 @@ Ax + By + Cz = D
 $$
 This is done with points taken from the trough of the wire, the start of the wire and the end of the wire. We then calculate the sum of the distance between all points in that wire cluster, from the plane, and choose the plane with the least distance, dubbing it as our best plane.
 
-### Finding new x-y coordinates of the wire cluster
+### Projected X-Y coordinates of the Wire Cluster
 Then, we will project the points, onto the plane, giving us a new set of coordinates in 2d, in order to find the best catenary model. This is done by making a vector from our origin point (point from the plane), taking the dot product of thatvector with the unit normal vector, multiplying the unit normal vector by distnace, and then substracting that vector from our poin. This wil give us the projection of our point onto the plane in 3D.
+
+From this, we need to construct a new axis by using basis vectors of the plane. Then, we will find two new vectors u and v, which are orthogonal to the normal of the plane, but lies in the plane, and finally normalise it. This will be the new axis of the 2D plane, which we will be projecting our 3D points into.
+
+### Finding the Optimal C
+From our cartenary equation, and the 2d points that we have found for our wire, we can easily find the parameters $x_0$ and $y_0$. In order to find the optimal C for the equation, we use the function 'minimize' from the 'scipy.optimize' module, and an additional loss function. The 'minimize' function will take in our loss function and cartenary equation as an argument and find the optimal c which will give us the least Mean Squared Error between the equations we generate and the real points.
+
 
 
 
