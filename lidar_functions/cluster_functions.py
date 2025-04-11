@@ -5,6 +5,7 @@ from sklearn.decomposition import PCA
 from kneed import KneeLocator
 import matplotlib.pyplot as plt
 
+# Cluster each group of wires into cables using DBScan
 def cluster_cables(lidar_df):
 
     coords = lidar_df[['x', 'y', 'z']].values
@@ -36,7 +37,7 @@ def cluster_cables(lidar_df):
 
     plt.show()
 
-# Clustering the cable into individual wires
+# Clustering the cable into individual wires using PCA and K-means
 def clustering_individual_wires(cable_points, cable_num):
 
     # Using PCA to get the orthogonal vector
@@ -44,7 +45,7 @@ def clustering_individual_wires(cable_points, cable_num):
     pca.fit(cable_points[['x', 'y']])
     normal = pca.components_[1]   
 
-    # Projecting the points onto the Orthogonal Line
+    # Projecting the points onto the orthogonal Line
     projected = cable_points[['x', 'y']].dot(normal)
 
     # Finding the optimal K with the Elbow Method
@@ -63,7 +64,6 @@ def clustering_individual_wires(cable_points, cable_num):
     best_kmeans = KMeans(n_clusters=best_k, random_state=42)
     cable_points.loc[:, 'wire'] = best_kmeans.fit_predict(projected.values.reshape(-1, 1))
 
-    # Visualisation
     plt.figure(figsize=(8, 6))
     for label in sorted(cable_points['wire'].unique()):
         wire_points = cable_points[cable_points['wire'] == label]

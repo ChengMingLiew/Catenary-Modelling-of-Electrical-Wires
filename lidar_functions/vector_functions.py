@@ -71,29 +71,33 @@ def project_onto_plane(point, plane_point, normal):
      
     return projected_point
 
-# Getting the 2D Coordinates of the points on the wire
+# Getting the 2D Coordinates of the points on the wire projected onto the plane
 def get_2d_points(wire_points, plane, point_origin):
 
     A, B, C, D = plane
     projected = []
     plane_normal = np.array([A, B, C])
 
-    # Projecting the 3D points on to the parallel plane
+    # Projecting the 3D points on to the plane
     for point in wire_points.values:
        projected.append(project_onto_plane(point, point_origin, plane_normal))
 
+    # Constructing a coodinate system in the plane
     plane_normal = plane_normal / np.linalg.norm(plane_normal)
 
+    # Normalising the normal vector
     min_idx = np.argmin(np.abs(plane_normal))
     arbitrary = np.zeros(3)
     arbitrary[min_idx] = 1.0
 
+    # Getting two arbitrary orthogonal vectors that are not parallel to the normal
     u = np.cross(plane_normal, arbitrary)
     u = u / np.linalg.norm(u)
 
     v = np.cross(plane_normal, u)
     v = v / np.linalg.norm(v)
 
+    # Changing the projected 3D points into 2D Coordinates of the plane
     points_2d = np.array([
         [np.dot(p - point_origin, u), -np.dot(p - point_origin, v)]
         for p in projected

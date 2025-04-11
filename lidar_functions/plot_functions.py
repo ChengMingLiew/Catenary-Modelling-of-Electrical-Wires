@@ -17,7 +17,7 @@ def xyz_3d_plot(lidar_df):
     plt.title('LiDAR Point Cloud')
     plt.show()
 
-# Plotting the cables on X-Y plane 
+# Plotting the cables on the X-Y plane with cabel labels
 def xy_cable_plot(cable_points, label):
     
     colour = plt.cm.tab20(label % 20)
@@ -33,7 +33,7 @@ def xy_cable_plot(cable_points, label):
     plt.axis('equal')
     plt.show()
 
-# Plotting the wires in 3d with cluster labels
+# Plotting the wires in 3d with wire labels
 def plot_3d_wire_clusters(lidar_df):
 
     fig = plt.figure(figsize=(10, 7))
