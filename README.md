@@ -28,7 +28,7 @@ choose_difficulty = random.randint(0, 3)
 lidar_df = spark.read.parquet(f'lidar_cable/lidar_cable_points_{difficulty[choose_difficulty]}.parquet')
 ```
 
-The difficulty of the parquet files chosen is currently set at random. However, by changing the choose_difficulty variable from 0 to 3, we are able to choose which difficulty we desire. Then by running the Jupyter notebook 'finding_catenary' we will be able to get the best catenary models for the wires that are found in the datasets.
+The difficulty of the parquet files chosen is currently set at random. However, by changing the 'choose_difficulty' variable between 0 and 3, we are able to choose which difficulty we desire. Then by running the Jupyter notebook 'finding_catenary' we will be able to get the best catenary models for the wires that are found in the datasets.
 
 # Steps to the Algorithm
 ### DBSCAN Algorithm
@@ -42,15 +42,15 @@ By using 3 points from each wire cluster, we are able to create two coplanar vec
 
 $$ Ax + By + Cz = D $$
 
-This is done with points taken from the trough of the wire, the start of the wire and the end of the wire. We then calculate the sum of the distance between all points in that wire cluster, from the plane, and choose the plane with the least distance, dubbing it as our best plane.
+This is done with points taken from the trough of the wire, the start of the wire and the end of the wire. We then calculate the sum of the distance between all points in that wire cluster and the plane, choose the plane with the least distance, and dubbing it as our best plane for that wire cluster.
 
 ### Projected X-Y coordinates of the Wire Cluster
-Then, we will project the points, onto the plane, giving us a new set of coordinates in 2d, in order to find the best catenary model. This is done by making a vector from our origin point (point from the plane), taking the dot product of thatvector with the unit normal vector, multiplying the unit normal vector by distnace, and then substracting that vector from our poin. This wil give us the projection of our point onto the plane in 3D.
+Then, we will project the points, onto the plane, giving us a new set of coordinates in 2d, in order to find the best catenary model. This is done by making a vector from our origin point (point from the plane), taking the dot product of that vector with the unit normal vector, multiplying the unit normal vector by distance, and then substracting that vector from our poin. This wil give us the projection of our point onto the plane in 3D.
 
 From this, we need to construct a new axis by using basis vectors of the plane. Then, we will find two new vectors u and v, which are orthogonal to the normal of the plane, but lies in the plane, and finally normalise it. This will be the new axis of the 2D plane, which we will be projecting our 3D points into.
 
 ### Finding the Optimal C
-From our cartenary equation, and the 2d points that we have found for our wire, we can easily find the parameters $x_0$ and $y_0$. In order to find the optimal C for the equation, we use the function 'minimize' from the 'scipy.optimize' module, and an additional loss function. The 'minimize' function will take in our loss function and cartenary equation as an argument and find the optimal c which will give us the least Mean Squared Error between the equations we generate and the real points.
+From our cartenary equation, and the 2d points that we have found for our wire, we can easily find the parameters $x_0$ and $y_0$. In order to find the optimal C for the equation, we use the function 'minimize' from the 'scipy.optimize' module, and an additional loss function. The 'minimize' function will take in our loss function and catenary equation as an argument and find the optimal C which has the least Mean Squared Error between the predicted points we generate from the equation and the real points.
 
 # Acknowledgements
 - ([Optimal Hyperparameters for DBSCAN](https://stackoverflow.com/questions/15050389/estimating-choosing-optimal-hyperparameters-for-dbscan))
