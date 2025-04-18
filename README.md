@@ -4,7 +4,7 @@ For this project, we are using LiDAR point cloud datasets in .parquet files (htt
 
 The model will follow the Catenary equation:
 
-$$ y(x) = y_0 + c x [cosh(\frac{x - x_0}{c} - 1] $$
+$$ y(x) = y_0 + c * [cosh(\frac{x - x_0}{c} - 1] $$
 
 Where $c$ is a curvature parameter, x is the distance along the wire $x_0$ is the $x$ value of the trough, $y$ is the elevation of the wire, and $y_0$ is the lowest elevation of the wire.
 
